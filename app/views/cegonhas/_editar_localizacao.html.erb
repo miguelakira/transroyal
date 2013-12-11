@@ -98,7 +98,7 @@
     <% if @cegonha.cidade_id.nil? %>
       <%= select_tag(:cidade_id) %>
     <% else %>
-      <%= select_tag(:cidade_id, options_from_collection_for_select(@locais_atual, :text, :text, @cidade_atual),  :onchange => "endOfRoute(this, 'estado_id')") %>
+      <%= select_tag(:cidade_id, options_from_collection_for_select(@current_locations, :text, :text, @current_city),  :onchange => "endOfRoute(this, 'estado_id')") %>
     <% end -%>
   </div>
 
@@ -116,9 +116,8 @@
     <% if @cegonha.cidade_origem.nil? %>
       <%= select_tag(:cidade_origem) %>
     <% else %>
-      <%= hidden_field_tag 'cidade_origem', @cidade_origem %>
+      <%= hidden_field_tag 'cidade_origem', @origin_city %>
       <b><%= @cidade_origem %></b>
-      <%#= select_tag(:cidade_origem, options_from_collection_for_select(@origens_atual, :text, :text, @cidade_origem)) %>
     <% end -%>
   </div>
 
@@ -136,9 +135,8 @@
     <% if @cegonha.cidade_destino.nil? %>
       <%= select_tag(:cidade_destino) %>
     <% else %>
-      <%= hidden_field_tag 'cidade_destino', @cidade_destino %>
-      <b><%= @cidade_destino %></b>
-      <%#= select_tag(:cidade_destino, options_from_collection_for_select(@destinos_atual, :text, :text, @cidade_destino)) %>
+      <%= hidden_field_tag 'cidade_destino', @destination_city %>
+      <b><%= @destination_city %></b>
     <% end -%>
   </div>
 

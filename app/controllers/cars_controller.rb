@@ -33,11 +33,6 @@ class CarsController < ApplicationController
     end
   end
 
-  def update_city_menu
-    @estado = Estado.find(params[:search][:estado])
-    render :layout => false
-  end
-
   def show
     @car = Car.find(params[:id])
 
@@ -71,14 +66,14 @@ class CarsController < ApplicationController
     @cegonhas = Cegonha.all
     @parceiros = Parceiro.all
     # pega um array com todas as cidades dos estados atualmente no banco, pra encher os forms.
-    @locais_atual = Cidade.find(:all, :conditions => {:estado_id => @car.estado_id})
-    @destinos_atual = Cidade.find(:all, :conditions => {:estado_id => @car.estado_destino})
-    @origens_atual = Cidade.find(:all, :conditions => {:estado_id => @car.estado_origem})
+    @current_locations = Cidade.find(:all, :conditions => {:estado_id => @car.estado_id})
+    @current_destinations = Cidade.find(:all, :conditions => {:estado_id => @car.estado_destino})
+    @current_origins = Cidade.find(:all, :conditions => {:estado_id => @car.estado_origem})
     # pega o nome das cidades atualmente no banco (origem, destino e atual)
 
-    @cidade_atual = Cidade.find(@car.cidade_id).text unless @car.cidade_id.nil?
-    @cidade_origem = Cidade.find(@car.cidade_origem).text unless @car.cidade_origem.nil?
-    @cidade_destino = Cidade.find(@car.cidade_destino).text unless @car.cidade_destino.nil?
+    @current_city = Cidade.find(@car.cidade_id).text unless @car.cidade_id.nil?
+    @origin_city = Cidade.find(@car.cidade_origem).text unless @car.cidade_origem.nil?
+    @destination_city = Cidade.find(@car.cidade_destino).text unless @car.cidade_destino.nil?
   end
 
   def limited_edit
