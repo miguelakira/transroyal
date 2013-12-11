@@ -55,11 +55,6 @@ class FinanceirosController < ApplicationController
       end
       @saldo_devedor = @valor_total - @valor_pago
     end
-    
-
-
-
-
   end 
 
   def generate_pdf
@@ -112,8 +107,6 @@ class FinanceirosController < ApplicationController
     file = kit.to_file(filename)
     send_file filename, :type => 'application/pdf'
     File.delete(filename)
-    
-
   end
 
 end

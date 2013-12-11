@@ -1,13 +1,4 @@
 class ContatosController < ApplicationController
-  # GET /contatos
-  # GET /contatos.json
-
-
-  # GET /contatos/1
-  # GET /contatos/1.json
-
-  # GET /contatos/new
-  # GET /contatos/new.json
   def new
     @contato = Contato.new
 
@@ -17,13 +8,10 @@ class ContatosController < ApplicationController
     end
   end
 
-  # GET /contatos/1/edit
   def edit
     @contato = Contato.find(params[:id])
   end
 
-  # POST /contatos
-  # POST /contatos.json
   def create
     @contato = Contato.new(params[:contato])
 
@@ -38,8 +26,6 @@ class ContatosController < ApplicationController
     end
   end
 
-  # PUT /contatos/1
-  # PUT /contatos/1.json
   def update
     @contato = Contato.find(params[:id])
 
@@ -54,8 +40,6 @@ class ContatosController < ApplicationController
     end
   end
 
-  # DELETE /contatos/1
-  # DELETE /contatos/1.json
   def destroy
     @contato = Contato.find(params[:id])
     @contato.destroy

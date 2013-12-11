@@ -1,6 +1,4 @@
 class CompradoresController < ApplicationController
-  # GET /compradores
-  # GET /compradores.json
   before_filter :authenticate_user!
 
   def index
@@ -12,8 +10,6 @@ class CompradoresController < ApplicationController
     end
   end
 
-  # GET /compradores/1
-  # GET /compradores/1.json
   def show
     @comprador = Comprador.find(params[:id])
 
@@ -23,8 +19,6 @@ class CompradoresController < ApplicationController
     end
   end
 
-  # GET /compradores/new
-  # GET /compradores/new.json
   def new
     @comprador = Comprador.new
 
@@ -34,13 +28,10 @@ class CompradoresController < ApplicationController
     end
   end
 
-  # GET /compradores/1/edit
   def edit
     @comprador = Comprador.find(params[:id])
   end
 
-  # POST /compradores
-  # POST /compradores.json
   def create
     @comprador = Comprador.new(params[:comprador])
 
@@ -55,8 +46,6 @@ class CompradoresController < ApplicationController
     end
   end
 
-  # PUT /compradores/1
-  # PUT /compradores/1.json
   def update
     @comprador = Comprador.find(params[:id])
 
@@ -71,8 +60,6 @@ class CompradoresController < ApplicationController
     end
   end
 
-  # DELETE /compradores/1
-  # DELETE /compradores/1.json
   def destroy
     @comprador = Comprador.find(params[:id])
     @comprador.destroy
