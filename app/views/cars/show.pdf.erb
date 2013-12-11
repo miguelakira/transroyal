@@ -161,50 +161,50 @@
   </tr>
 <tr>
     <th>Valor do Frete</th>
-    <td> <%= retorna_valor_monetario(@car.pagamento.valor_frete) %></td>
+    <td> <%= number_to_currency(@car.pagamento.valor_frete) %></td>
   </tr>
 
 
 <tr>
     <th>Taxa de Plataforma</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.taxa_plataforma) %></td>
+    <td><%= number_to_currency(@car.pagamento.taxa_plataforma) %></td>
 </tr>
 <tr>
     <th>Taxa de Plataforma Origem</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.taxa_plataforma_origem) %></td>
+    <td><%= number_to_currency(@car.pagamento.taxa_plataforma_origem) %></td>
 </tr>
 <tr>
     <th>Taxa de Plataforma Destino</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.taxa_plataforma_destino) %></td>
+    <td><%= number_to_currency(@car.pagamento.taxa_plataforma_destino) %></td>
 </tr>
 
 <tr>
     <th>Taxa de Balsa</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.taxa_balsa) %></td>
+    <td><%= number_to_currency(@car.pagamento.taxa_balsa) %></td>
 </tr>
 <tr>
     <th>Taxa de Redespacho</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.taxa_despacho) %></td>
+    <td><%= number_to_currency(@car.pagamento.taxa_despacho) %></td>
 </tr>
 <tr>
     <th>Desconto</th>
     
-    <td>-<%= retorna_valor_monetario(@car.pagamento.desconto) %></td>
+    <td>-<%= number_to_currency(@car.pagamento.desconto) %></td>
 </tr>
 
 <tr>
     <th>Valor Pago pelo Cliente</th>
-    <td>-<%= retorna_valor_monetario(@car.pagamento.valor_pago) %> <%= "em #{@car.pagamento.data_pagamento.strftime('%d/%m/%Y')}" unless @car.pagamento.data_pagamento.nil? %></td>
+    <td>-<%= number_to_currency(@car.pagamento.valor_pago) %> <%= "em #{@car.pagamento.data_pagamento.strftime('%d/%m/%Y')}" unless @car.pagamento.data_pagamento.nil? %></td>
 </tr>
   
 <tr>
     <th>Total do Frete</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.valor_total) %></td>
+    <td><%= number_to_currency(@car.pagamento.valor_total) %></td>
 </tr> 
 
   <tr>
     <th>Saldo Devedor</th>
-    <td><%= retorna_valor_monetario(@car.pagamento.saldo_devedor) %></td>
+    <td><%= number_to_currency(@car.pagamento.saldo_devedor) %></td>
   </tr>
 
 

@@ -1,36 +1,5 @@
 module ApplicationHelper
 
-def sortable(column, title = nil)
-    title ||= column.titleize  
-    css_class = column == sort_column ? "current #{sort_direction}" : nil  
-    
-    if column == 'nome'
-      if sort_direction == 'asc'
-        direction = 'desc'
-      end
-    elsif column == 'status_pagamento'
-      if sort_direction == 'asc'
-        direction = 'desc'
-      end
-    elsif column == 'origem'
-      if sort_direction == 'asc'
-        direction = 'desc'
-      end
-    elsif column == 'destino'
-      if sort_direction == 'asc'
-        direction = 'desc'
-      end
-    elsif column == 'saldo_total'
-      if sort_direction == 'asc'
-        direction = 'desc'
-      end
-    else
-    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"  
-    
-    end
-    link_to title, :sort => column, :direction => direction  
-  end
-
 # def button(name,url)
   def button(*args)
     if args.size == 2
@@ -47,34 +16,12 @@ def sortable(column, title = nil)
     end
   end
 
- def sort_direction  
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"  
-  end  
-
-  def sort_column  
-    Car.column_names.include?(params[:sort]) ? params[:sort] : "placa"  
-  end  
-  
-  def retorna_valor_monetario(valor)
-    number_to_currency(valor, :format => "%u %n", :separator => ",", :delimiter => ".", :unit => "R$")
-  end
-
   def pdf_image_tag(image, options = {})
     options[:src] = File.expand_path(Rails.root) + '' + image
     tag(:img, options)
   end
 
-  def retorna_valor_dos_fretes(terceiro)
-    valor_total = 0
-    terceiro.cars.each do |car|
-      valor_total += car.pagamento.valor_total
-    end
-    return number_to_currency(valor_total, :format => "%u %n", :separator => ",", :delimiter => ".", :unit => "R$")  
-  end
-
   def vehicle_status_as_array_with_index
     [*VEHICLE_STATUS.collect {|v,i| [t(v),VEHICLE_STATUS.index(v)] }]
   end
-
-
 end

@@ -3,8 +3,6 @@ class Car < ActiveRecord::Base
   attr_accessible :localizacao, :modelo, :placa, :rota_id, :status_pagamento_id, :ativo, :estado_id, :cidade_id, :data_compra,
         :data_prevista, :cegonha_id, :comprador_attributes, :empresa_attributes, :pagamento_attributes, :observacao,
         :parceiro_id
-
-
         
   belongs_to :status_pagamento
   belongs_to :cegonha
@@ -24,11 +22,11 @@ class Car < ActiveRecord::Base
 
   validates :status_pagamento_id, :car_not_paid => true  
   
-  before_save :transforma_placa_em_maiuscula, :transforma_modelo_em_minuscula, :eliminar_da_cegonha_caso_inativo, :ajusta_nome
+  before_save :license_plate_uppercase, :car_model_downcase, :remove_from_carrier_if_delivered, :person_or_company_name
   
-  after_find :capitaliza_modelo
+  after_find :titleize_model
   
-  def ajusta_nome
+  def person_or_company_name
     if self.nome.nil?
       if self.comprador
         self.nome = self.comprador.nome
@@ -38,8 +36,8 @@ class Car < ActiveRecord::Base
     end
   end
 
-  def eliminar_da_cegonha_caso_inativo
-    if self.ativo == 0
+  def remove_from_carrier_if_delivered
+    if self.is_delivered?
       self.cegonha = nil
     end
   end
@@ -63,24 +61,19 @@ class Car < ActiveRecord::Base
     end
   end
 
-  def transforma_placa_em_maiuscula
+  def license_plate_uppercase
   	self.placa.upcase!
   end
 
-  def transforma_modelo_em_minuscula
+  def car_model_downcase
   	self.modelo.downcase!
   end  
 
-  def capitaliza_modelo
+  def titleize_model
   	self.modelo = self.modelo.titleize
   end
 
-=begin
-  define_index do 
-  	indexes placa
-  	indexes modelo, :sortable => true
-  	indexes localizacao, :sortable => true
-
+  def is_delivered?
+    return self.ativo == VEHICLE_STATUS.index('DELIVERED')
   end
-=end
 end

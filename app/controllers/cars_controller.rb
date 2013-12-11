@@ -94,8 +94,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # POST /POST
-  # cars /cars.json
   def create
     @car = Car.new(params[:car])
     @status_pagamentos = StatusPagamento.all
@@ -122,7 +120,6 @@ class CarsController < ApplicationController
       end
     end
 
-
       respond_to do |format|
       if @car.save
         # faz update da contagem de carros da cegonha
@@ -145,8 +142,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # PUT /cars/1
-  # PUT /cars/1.json
   def update
     @car = Car.find(params[:id])
     @car.ativo = params[:ativo] unless params[:ativo].nil?
@@ -195,7 +190,6 @@ class CarsController < ApplicationController
     #se o carro nao estava na cegonha e foi colocado em uma
     if !@car.cegonha
       if params[:car]
-
         @car.update_attributes(:localizacao => Cegonha.find(params[:car][:cegonha_id]).localizacao, :cidade_id => Cegonha.find(params[:car][:cegonha_id]).cidade_id, :estado_id => Cegonha.find(params[:car][:cegonha_id]).estado_id, :ativo => 1) unless params[:car][:cegonha_id].empty?
       end
     end
@@ -220,8 +214,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1
-  # DELETE /cars/1.json
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
@@ -246,25 +238,4 @@ class CarsController < ApplicationController
     send_file filename, :type => 'application/pdf'
     File.delete(filename)
   end
-
-  private
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
-
-  def sort_column
-    Car.column_names.include?(params[:sort]) ? params[:sort] : "data_compra, id"
-  end
-
-  def for_sectionid
-      @subsections = Cidade.find( :all, :conditions => [" estado_id = ?", params[:id]]  ).sort_by{ |k| k['nome'] }
-      respond_to do |format|
-        format.json  { render :json => @subsections }
-      end
-  end
-
-
-
-
-
 end
