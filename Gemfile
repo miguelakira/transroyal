@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.2.0'
   gem 'guard-rspec', '~> 0.7.0'
   gem 'sqlite3'
+  gem 'debugger'
 end
 
 group :production do

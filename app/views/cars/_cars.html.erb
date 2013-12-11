@@ -23,7 +23,7 @@
             <dd>  <%= @car.status_pagamento.status %></dd>
 
             <dt>Status do Veículo</dt>
-            <dd><%= StatusVeiculo::estados[@car.ativo] %></dd>
+            <dd><%= t(VEHICLE_STATUS[@car.ativo]) %></dd>
 
             <dt>Modelo</dt>
             <dd> <%= @car.modelo.titleize %> </dd>

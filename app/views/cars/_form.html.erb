@@ -182,10 +182,10 @@
     <%= f.label :parceiro_id, "Parceiro" %><br />
     <%= f.select :parceiro_id, @parceiros.collect {|p| [ p.nome, p.id ] }, { :include_blank => true}, :onchange => "parceiroOrCegonhaNotBoth(this,'cegonha');", :id => :parceiro   %>
   </div>
-
+  
   <div class="field">
     <%= f.label :ativo, "Status do Carro" %><br />
-    <%= select_tag :ativo, options_for_select(StatusVeiculo::estados.collect {|p| [p[1], p[0]]}, @car.ativo)   %>
+    <%= select_tag :ativo, options_for_select(vehicle_status_as_array_with_index, @car.ativo)   %>
   </div>
 
   <div class="field">
